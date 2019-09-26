@@ -28,6 +28,9 @@ var PIN_HEIGHT = 70;
 var MAIN_PIN_WIDTH = 65;
 var MAIN_PIN_HEIGNT = 65;
 
+var MAIN_PIN_ARROW_WIDTH = 10;
+var MAIN_PIN_ARROW_HEIGNT = 22;
+
 var MAP_WIDTH = document.querySelector('.map').offsetWidth;
 
 var PATH_TO_PHOTO = 'http://o0.github.io/assets/images/tokyo/hotel';
@@ -118,11 +121,11 @@ var activeFrom = function () {
 // Установка координат для главной точки
 var setCoordMainPin = function (isDisabled) {
   var pinCoordsX = Math.round(pinMain.offsetLeft + (MAIN_PIN_WIDTH /  2));
-  var pinCoordsY = Math.round(pinMain.offsetTop + (MAIN_PIN_HEIGNT /  2));
+  var pinCoordsY = Math.round(pinMain.offsetTop + MAIN_PIN_HEIGNT + MAIN_PIN_ARROW_HEIGNT);
 
   if(isDisabled){
-    pinCoordsX = Math.round(pinMain.offsetLeft);
-    pinCoordsY = Math.round(pinMain.offsetTop);
+    pinCoordsX = Math.round(pinMain.offsetLeft + (MAIN_PIN_WIDTH /  2));
+    pinCoordsY = Math.round(pinMain.offsetTop + (MAIN_PIN_HEIGNT /  2));
   }
 
   inputAddress.value = pinCoordsX + ', ' + pinCoordsY;
