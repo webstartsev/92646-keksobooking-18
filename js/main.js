@@ -35,8 +35,13 @@ var MAP_WIDTH = document.querySelector('.map').offsetWidth;
 
 var PATH_TO_PHOTO = 'http://o0.github.io/assets/images/tokyo/hotel';
 
+var MAX_ROOMS = 100;
+
 var pinMain = document.querySelector('.map__pin--main');
 var inputAddress = document.querySelector('#address');
+
+var roomNumber = document.querySelector("#room_number");
+var capacity = document.querySelector("#capacity");
 
 var getRandomArbitrary = function (min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -203,6 +208,23 @@ var insertCard = function (card) {
   document.querySelector('.map__filters-container').insertAdjacentElement('beforeBegin', card);
 };
 
+// Провоерка соответсвия «Количество комнат» и «Количество мест»
+var checkCountRoomsAndPeople = function () {
+  var countRooms = roomNumber.value;
+  var countPeople = capacity.value;
+
+  roomNumber.setCustomValidity('');
+  capacity.setCustomValidity('');
+
+  if(countPeople == 0 && countRooms != MAX_ROOMS){
+    roomNumber.setCustomValidity('Необходимо не менее 100 комнат');
+  } else if(countRooms == MAX_ROOMS && countPeople != 0){
+    capacity.setCustomValidity('Только не для гостей');
+  } else if(countRooms < countPeople && countPeople !== 0){
+    capacity.setCustomValidity('Кол-ва людей больше чем мест');
+  }
+};
+
 // События Активации карты
 pinMain.addEventListener('mousedown', function () {
   activeMap();
@@ -216,10 +238,18 @@ pinMain.addEventListener('keydown', function (evt) {
   }
 });
 
+// События валидации «Количество комнат» и «Количество мест»
+roomNumber.addEventListener('change', function () {
+  checkCountRoomsAndPeople();
+});
+capacity.addEventListener('change', function () {
+  checkCountRoomsAndPeople();
+});
 
 // Основная программа
 var mockData = generateMockData();
 setCoordMainPin(true);
+checkCountRoomsAndPeople();
 // renderPins(mockData);
 
 // var card = fillCardTemplate(mockData[0]);
