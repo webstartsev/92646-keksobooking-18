@@ -157,8 +157,8 @@ var insertCard = function (card) {
 
 // Основная программа
 var mockData = generateMockData();
-activeMap();
-renderPins(mockData);
+// activeMap();
+// renderPins(mockData);
 
-var card = fillCardTemplate(mockData[0]);
-insertCard(card);
+// var card = fillCardTemplate(mockData[0]);
+// insertCard(card);
