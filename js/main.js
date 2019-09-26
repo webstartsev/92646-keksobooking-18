@@ -1,5 +1,7 @@
 'use strict';
 
+var ENTER_KEYCODE = 13;
+
 var COUNT = 8;
 
 var TYPES = ['palace', 'flat', 'house', 'bungalo'];
@@ -23,9 +25,15 @@ var LOCATION_Y_MAX = 630;
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
 
+var MAIN_PIN_WIDTH = 65;
+var MAIN_PIN_HEIGNT = 65;
+
 var MAP_WIDTH = document.querySelector('.map').offsetWidth;
 
 var PATH_TO_PHOTO = 'http://o0.github.io/assets/images/tokyo/hotel';
+
+var pinMain = document.querySelector('.map__pin--main');
+var inputAddress = document.querySelector('#address');
 
 var getRandomArbitrary = function (min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -80,9 +88,32 @@ var generateMockData = function () {
   return mockList;
 };
 
+// Активация Карты
 var activeMap = function () {
   document.querySelector('.map').classList.remove('map--faded');
+
+  var mapFilters = document.querySelector('.map__filters');
+
+  var selects = mapFilters.querySelectorAll('select');
+  var fieldsets = mapFilters.querySelectorAll('fieldset');
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].disabled = false;
+  }
+  for (var i = 0; i < fieldsets.length; i++) {
+    fieldsets[i].disabled = false;
+  }
 };
+
+// Активация формы
+var activeFrom = function () {
+  var adForm = document.querySelector('.ad-form');
+  adForm.classList.remove('ad-form--disabled');
+
+  var fieldsets = adForm.querySelectorAll('fieldset');
+  for (var i = 0; i < fieldsets.length; i++) {
+    fieldsets[i].disabled = false;
+  }
+}
 
 var pinTemplate = document.querySelector('#pin').content.querySelector('button');
 var fillPinTemplate = function (data) {
@@ -155,9 +186,21 @@ var insertCard = function (card) {
   document.querySelector('.map__filters-container').insertAdjacentElement('beforeBegin', card);
 };
 
+// События Активации карты
+pinMain.addEventListener('mousedown', function () {
+  activeMap();
+  activeFrom();
+});
+pinMain.addEventListener('keydown', function (evt) {
+  if(evt.keyCode === ENTER_KEYCODE){
+    activeMap();
+    activeFrom();
+  }
+});
+
+
 // Основная программа
 var mockData = generateMockData();
-// activeMap();
 // renderPins(mockData);
 
 // var card = fillCardTemplate(mockData[0]);
