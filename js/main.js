@@ -115,6 +115,20 @@ var activeFrom = function () {
   }
 }
 
+// Установка координат для главной точки
+var setCoordMainPin = function (isDisabled) {
+  var pinCoordsX = Math.round(pinMain.offsetLeft + (MAIN_PIN_WIDTH /  2));
+  var pinCoordsY = Math.round(pinMain.offsetTop + (MAIN_PIN_HEIGNT /  2));
+
+  if(isDisabled){
+    pinCoordsX = Math.round(pinMain.offsetLeft);
+    pinCoordsY = Math.round(pinMain.offsetTop);
+  }
+
+  inputAddress.value = pinCoordsX + ', ' + pinCoordsY;
+}
+
+
 var pinTemplate = document.querySelector('#pin').content.querySelector('button');
 var fillPinTemplate = function (data) {
   var template = pinTemplate.cloneNode(true);
@@ -190,6 +204,7 @@ var insertCard = function (card) {
 pinMain.addEventListener('mousedown', function () {
   activeMap();
   activeFrom();
+  setCoordMainPin();
 });
 pinMain.addEventListener('keydown', function (evt) {
   if(evt.keyCode === ENTER_KEYCODE){
@@ -201,6 +216,7 @@ pinMain.addEventListener('keydown', function (evt) {
 
 // Основная программа
 var mockData = generateMockData();
+setCoordMainPin(true);
 // renderPins(mockData);
 
 // var card = fillCardTemplate(mockData[0]);
