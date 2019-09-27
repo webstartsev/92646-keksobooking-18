@@ -10,6 +10,7 @@ var TYPES_DICTIONARY = {'palace': 'Дворец', 'flat': 'Квартира', 'h
 var CHECKIN = ['12:00', '13:00', '14:00'];
 var CHECKOUT = ['12:00', '13:00', '14:00'];
 var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var PRICE_FOR_TYPE = {'palace': 10000, 'flat': 1000, 'house': 5000, 'bungalo': 0};
 
 var ADDRESS_MIN = 100;
 var ADDRESS_MAX = 600;
@@ -43,6 +44,12 @@ var inputAddress = document.querySelector('#address');
 
 var roomNumber = document.querySelector('#room_number');
 var capacity = document.querySelector('#capacity');
+
+var houseType = document.querySelector('#type');
+var price = document.querySelector('#price');
+
+var timeIn = document.querySelector('#timein');
+var timeOut = document.querySelector('#timeout');
 
 var getRandomArbitrary = function (min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -270,6 +277,11 @@ var removePopup = function () {
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
+var syncTime = function (time) {
+  timeIn.value = time.value;
+  timeOut.value = time.value;
+};
+
 // События Активации карты
 pinMain.addEventListener('mousedown', function () {
   init();
@@ -288,6 +300,17 @@ capacity.addEventListener('change', function () {
   checkCountRoomsAndPeople();
 });
 
+houseType.addEventListener('change', function () {
+  price.setAttribute('min', PRICE_FOR_TYPE[houseType.value]);
+});
+
+timeIn.addEventListener('change', function () {
+  syncTime(timeIn);
+});
+timeOut.addEventListener('change', function () {
+  syncTime(timeOut);
+});
+
 var init = function () {
   activeMap();
   setCoordMainPin();
@@ -298,7 +321,6 @@ var init = function () {
   for (var i = 0; i < pins.length; i++) {
     openPopupHandler(pins[i], mockData[i]);
   }
-
 };
 
 // Основная программа
