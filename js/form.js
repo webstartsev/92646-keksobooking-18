@@ -20,8 +20,8 @@
 
   // Провоерка соответсвия «Количество комнат» и «Количество мест»
   var checkCountRoomsAndPeople = function () {
-    var countRooms = roomNumber.value;
-    var countPeople = capacity.value;
+    var countRooms = parseInt(roomNumber.value, 10);
+    var countPeople = parseInt(capacity.value, 10);
 
     roomNumber.setCustomValidity('');
     capacity.setCustomValidity('');
