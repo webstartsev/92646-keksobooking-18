@@ -14,6 +14,11 @@
       if (evt.keyCode === this.ESC_KEYCODE) {
         action();
       }
+    },
+    onEnterPress: function (evt, action) {
+      if (evt.keyCode === this.ENTER_KEYCODE) {
+        action();
+      }
     }
   };
 })();

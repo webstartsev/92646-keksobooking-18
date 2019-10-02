@@ -61,11 +61,11 @@
     }
   });
   pinMain.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
+    window.utils.onEnterPress(evt, function () {
       if (!renderPins) {
         init();
       }
-    }
+    });
   });
 
   setCoordMainPin(true);
