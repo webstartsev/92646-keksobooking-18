@@ -40,6 +40,22 @@
     inputAddress.value = pinCoordsX + ', ' + pinCoordsY;
   };
 
+  // Проверяет выходит ли главная точка за границы диапазона
+  var checkLocationMainPin = function () {
+    // ограничение слева/справа
+    if (pinMain.offsetLeft <= 0 - (MAIN_PIN_WIDTH / 2)) {
+      pinMain.style.left = Math.floor(0 - (MAIN_PIN_WIDTH / 2)) + 'px';
+    } else if (pinMain.offsetLeft + (MAIN_PIN_WIDTH / 2) >= window.data.MAP_WIDTH) {
+      pinMain.style.left = Math.floor(window.data.MAP_WIDTH - (MAIN_PIN_WIDTH / 2)) + 'px';
+    }
+    // ограничение сверху/внизу
+    if (pinMain.offsetTop + MAIN_PIN_HEIGNT <= window.data.LOCATION_Y_MIN) {
+      pinMain.style.top = window.data.LOCATION_Y_MIN - MAIN_PIN_HEIGNT + 'px';
+    } else if (pinMain.offsetTop + MAIN_PIN_HEIGNT >= window.data.LOCATION_Y_MAX) {
+      pinMain.style.top = Math.floor(window.data.LOCATION_Y_MAX - MAIN_PIN_HEIGNT) + 'px';
+    }
+  };
+
   var init = function () {
     renderPins = true;
     activeMap();
@@ -66,6 +82,59 @@
         init();
       }
     });
+  });
+
+  // События Перетаскивания главной точки
+  pinMain.addEventListener('mousedown', function (downEvt) {
+    downEvt.preventDefault();
+
+    var startCoords = {
+      x: downEvt.clientX,
+      y: downEvt.clientY
+    };
+
+    var drag = false;
+
+    var onMouseMove = function (moveEvt) {
+      moveEvt.preventDefault();
+      drag = true;
+
+      var diff = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY,
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      pinMain.style.left = (pinMain.offsetLeft - diff.x) + 'px';
+      pinMain.style.top = (pinMain.offsetTop - diff.y) + 'px';
+
+    };
+
+    var onMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+
+      checkLocationMainPin();
+      setCoordMainPin();
+
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+
+      if (drag) {
+        var onClickPreventDefault = function (evt) {
+          evt.preventDefault();
+          pinMain.removeEventListener('click', onClickPreventDefault);
+        };
+        pinMain.addEventListener('click', onClickPreventDefault);
+      }
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+
   });
 
   setCoordMainPin(true);

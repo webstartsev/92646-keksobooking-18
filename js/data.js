@@ -24,6 +24,9 @@
   var PATH_TO_PHOTO = 'http://o0.github.io/assets/images/tokyo/hotel';
 
   window.data = {
+    MAP_WIDTH: MAP_WIDTH,
+    LOCATION_Y_MIN: LOCATION_Y_MIN,
+    LOCATION_Y_MAX: LOCATION_Y_MAX,
     generateMockData: function () {
       var mockList = [];
       for (var i = 1; i <= COUNT; i++) {
