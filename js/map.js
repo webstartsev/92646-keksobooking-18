@@ -5,6 +5,7 @@
   var MAIN_PIN_HEIGNT = 65;
   var MAIN_PIN_ARROW_HEIGNT = 22;
 
+  var renderPins = false;
   var pinMain = document.querySelector('.map__pin--main');
   var inputAddress = document.querySelector('#address');
 
@@ -40,6 +41,7 @@
   };
 
   var init = function () {
+    renderPins = true;
     activeMap();
     setCoordMainPin();
 
@@ -54,11 +56,15 @@
 
   // События Активации карты
   pinMain.addEventListener('mousedown', function () {
-    init();
+    if (!renderPins) {
+      init();
+    }
   });
   pinMain.addEventListener('keydown', function (evt) {
     if (evt.keyCode === window.utils.ENTER_KEYCODE) {
-      init();
+      if (!renderPins) {
+        init();
+      }
     }
   });
 
