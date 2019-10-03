@@ -6,7 +6,7 @@
   // Личный проект: больше деталей
   var fillTemplateCard = function (data) {
     var offer = data.offer;
-    var avatar = data.avatar;
+    var avatar = data.author.avatar;
 
     var cardTemplate = document.querySelector('#card').content.querySelector('article');
     var template = cardTemplate.cloneNode(true);
