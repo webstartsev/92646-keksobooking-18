@@ -12,7 +12,7 @@
     template.style.left = (data.location.x - PIN_WIDTH / 2) + 'px';
     template.style.top = (data.location.y - PIN_HEIGHT) + 'px';
 
-    template.querySelector('img').src = data.avatar;
+    template.querySelector('img').src = data.author.avatar;
     template.querySelector('img').alt = data.offer.title;
 
     return template;
