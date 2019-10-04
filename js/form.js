@@ -66,7 +66,7 @@
         fieldsets[i].disabled = false;
       }
     },
-    disable: function () {
+    deactivate: function () {
       adForm.classList.add('ad-form--disabled');
       var fieldsets = adForm.querySelectorAll('fieldset');
       for (var i = 0; i < fieldsets.length; i++) {
@@ -105,10 +105,10 @@
 
   // Обработчик положительной отправки формы
   var successHandler = function () {
-    window.form.disable();
-    window.pin.removePins();
+    window.form.deactivate();
+    window.pins.remove();
     window.popup.removePopup();
-    window.map.deactiveteMap();
+    window.map.deactivate();
     showSucces();
   };
   var showSucces = function () {

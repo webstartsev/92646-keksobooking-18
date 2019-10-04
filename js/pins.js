@@ -4,9 +4,8 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
-  var pinTemplate = document.querySelector('#pin').content.querySelector('button');
-
   var fillPinTemplate = function (data) {
+    var pinTemplate = document.querySelector('#pin').content.querySelector('button');
     var template = pinTemplate.cloneNode(true);
 
     template.style.left = (data.location.x - PIN_WIDTH / 2) + 'px';
@@ -18,8 +17,8 @@
     return template;
   };
 
-  window.pin = {
-    renderPins: function (mock) {
+  window.pins = {
+    render: function (mock) {
       var pinsList = document.querySelector('.map__pins');
       var fragment = document.createDocumentFragment();
       for (var i = 0; i < mock.length; i++) {
@@ -28,7 +27,7 @@
       }
       pinsList.appendChild(fragment);
     },
-    removePins: function () {
+    remove: function () {
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
       for (var i = 0; i < pins.length; i++) {
         pins[i].remove();
