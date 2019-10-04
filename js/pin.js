@@ -27,6 +27,12 @@
         fragment.appendChild(pin);
       }
       pinsList.appendChild(fragment);
+    },
+    removePins: function () {
+      var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+      for (var i = 0; i < pins.length; i++) {
+        pins[i].remove();
+      }
     }
   };
 

@@ -66,18 +66,12 @@
   var closePopupHandler = function () {
     var closePopup = document.querySelector('.popup__close');
     closePopup.addEventListener('click', function () {
-      removePopup();
+      window.popup.removePopup();
     });
   };
 
-  var removePopup = function () {
-    var popup = document.querySelector('.popup');
-    popup.remove();
-    document.removeEventListener('keydown', onPopupEscPress);
-  };
-
   var onPopupEscPress = function (evt) {
-    window.utils.onEscPress(evt, removePopup);
+    window.utils.onEscPress(evt, window.popup.removePopup);
   };
 
   window.popup = {
@@ -90,6 +84,13 @@
           openPopup(data);
         });
       });
+    },
+    removePopup: function () {
+      var popup = document.querySelector('.popup');
+      if (popup) {
+        popup.remove();
+        document.removeEventListener('keydown', onPopupEscPress);
+      }
     }
   };
 })();

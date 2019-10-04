@@ -100,7 +100,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide" disabled>
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" required minlength="30" maxlength="100">
+          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" required minlength="30" maxlength="100" value="showSuccesshowSuccesshowSuccesshowSuccesshowSuccesshowSuccesshowSuccesshowSucces">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide" disabled>
           <label class="ad-form__label" for="address">Адрес</label>
@@ -117,7 +117,7 @@
         </fieldset>
         <fieldset class="ad-form__element" disabled>
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="5000" required max="1000000" min="1000">
+          <input id="price" name="price" type="number" placeholder="5000" required max="1000000" min="1000" value="1111">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time" disabled>
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>
@@ -135,9 +135,9 @@
         <fieldset class="ad-form__element" disabled>
           <label class="ad-form__label" for="room_number">Кол-во комнат</label>
           <select id="room_number" name="rooms">
-            <option value="1" selected>1 комната</option>
+            <option value="1">1 комната</option>
             <option value="2">2 комнаты</option>
-            <option value="3">3 комнаты</option>
+            <option value="3" selected>3 комнаты</option>
             <option value="100">100 комнат</option>
           </select>
         </fieldset>
@@ -248,12 +248,12 @@
     </div>
   </template>
 
+  <script src="js/config.js"></script>
   <script src="js/utils.js"></script>
-  <script src="js//backend.js"></script>
+  <script src="js/backend.js"></script>
   <script src="js/pin.js"></script>
   <script src="js/form.js"></script>
   <script src="js/popup.js"></script>
   <script src="js/map.js"></script>
-  <!-- <script src="js/main.js"></script> -->
 </body>
 </html>

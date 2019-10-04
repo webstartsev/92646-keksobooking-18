@@ -9,8 +9,6 @@
   var LOCATION_Y_MIN = 130;
   var LOCATION_Y_MAX = 630;
 
-  var URL_DATA = 'https://js.dump.academy/keksobooking/data';
-
   var renderPins = false;
   var pinMain = document.querySelector('.map__pin--main');
   var inputAddress = document.querySelector('#address');
@@ -28,6 +26,23 @@
     }
     for (var j = 0; j < fieldsets.length; j++) {
       fieldsets[j].disabled = false;
+    }
+  };
+
+  window.map = {
+    deactiveteMap: function () {
+      document.querySelector('.map').classList.add('map--faded');
+
+      var mapFilters = document.querySelector('.map__filters');
+
+      var selects = mapFilters.querySelectorAll('select');
+      var fieldsets = mapFilters.querySelectorAll('fieldset');
+      for (var i = 0; i < selects.length; i++) {
+        selects[i].disabled = true;
+      }
+      for (var j = 0; j < fieldsets.length; j++) {
+        fieldsets[j].disabled = true;
+      }
     }
   };
 
@@ -79,22 +94,18 @@
     var reloadDataBtn = template.querySelector('.error__button');
     reloadDataBtn.addEventListener('click', function () {
       removeErrorMsg();
-      loadData();
-
+      window.backend.load(window.config.URL_DATA, succesHandler, errorHandler);
     });
     reloadDataBtn.addEventListener('keydown', function (evt) {
       window.utils.onEnterPress(evt, function () {
         removeErrorMsg();
-        loadData();
+        window.backend.load(window.config.URL_DATA, succesHandler, errorHandler);
       });
     });
 
     document.body.insertAdjacentElement('beforeBegin', template);
   };
 
-  var loadData = function () {
-    window.backend.load(URL_DATA, succesHandler, errorHandler);
-  };
   var removeErrorMsg = function () {
     document.querySelector('.error').remove();
   };
@@ -103,7 +114,7 @@
     renderPins = true;
     activeMap();
     setCoordMainPin();
-    loadData();
+    window.backend.load(window.config.URL_DATA, succesHandler, errorHandler);
   };
 
   // События Активации карты
