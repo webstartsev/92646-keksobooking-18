@@ -12,6 +12,8 @@
   var LOCATION_Y_MAX = 630;
 
   var pinMain = document.querySelector('.map__pin--main');
+  var defaultCoordX = pinMain.offsetLeft;
+  var defaultCoordY = pinMain.offsetTop;
 
   window.mainPin = {
     setCoords: function (isDisabled) {
@@ -38,6 +40,12 @@
       } else if (pinMain.offsetTop + MAIN_PIN_HEIGNT >= LOCATION_Y_MAX) {
         pinMain.style.top = Math.floor(LOCATION_Y_MAX - MAIN_PIN_HEIGNT) + 'px';
       }
+    },
+    setDeafultPosition: function () {
+      pinMain.style.left = defaultCoordX + 'px';
+      pinMain.style.top = defaultCoordY + 'px';
+
+      window.mainPin.setCoords(true);
     }
   };
 

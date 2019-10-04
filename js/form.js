@@ -109,6 +109,7 @@
     window.pins.remove();
     window.popup.removePopup();
     window.map.deactivate();
+    window.mainPin.setDeafultPosition();
     showSucces();
   };
   var showSucces = function () {
