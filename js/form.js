@@ -37,7 +37,7 @@
     }
   };
 
-  var resetInput = function (fieldset) {
+  var clearField = function (fieldset) {
     var input = fieldset.querySelector('input');
     if (input) {
       input.value = '';
@@ -71,7 +71,7 @@
       var fieldsets = adForm.querySelectorAll('fieldset');
       for (var i = 0; i < fieldsets.length; i++) {
         fieldsets[i].disabled = true;
-        resetInput(fieldsets[i]);
+        clearField(fieldsets[i]);
       }
     }
   };
