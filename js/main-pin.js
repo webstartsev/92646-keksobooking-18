@@ -91,6 +91,7 @@
       pinMain.style.left = (pinMain.offsetLeft - diff.x) + 'px';
       pinMain.style.top = (pinMain.offsetTop - diff.y) + 'px';
 
+      window.mainPin.checkLocation();
     };
 
     var onMouseUp = function (upEvt) {
