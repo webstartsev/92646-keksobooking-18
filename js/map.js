@@ -4,6 +4,7 @@
   window.map = {
     isActive: false,
     activate: function () {
+      window.map.isActive = true;
       document.querySelector('.map').classList.remove('map--faded');
 
       var mapFilters = document.querySelector('.map__filters');
@@ -33,7 +34,6 @@
       }
     },
     init: function () {
-      window.map.isActive = true;
       window.map.activate();
       window.mainPin.setCoords();
       window.backend.load(window.config.URL_DATA, succesHandler, errorHandler);
@@ -41,13 +41,8 @@
   };
 
   var succesHandler = function (data) {
+    window.pins.copyData(data);
     window.pins.render(data);
-    window.form.activate();
-
-    var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-    for (var i = 0; i < pins.length; i++) {
-      window.popup.openPopupHandler(pins[i], data[i]);
-    }
   };
   var errorHandler = function (errorMessage) {
     var cardError = document.querySelector('#error').content.querySelector('div');
