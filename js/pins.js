@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var pinsCopy = [];
-
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
@@ -23,6 +21,8 @@
 
   window.pins = {
     render: function (data) {
+      window.pins.remove();
+      window.popup.removePopup();
       var pinsList = document.querySelector('.map__pins');
       var fragment = document.createDocumentFragment();
       var countPins = data.length > COUNT_PINS ? COUNT_PINS : data.length;
@@ -43,18 +43,6 @@
         pins[i].remove();
       }
     },
-    copyData: function (data) {
-      pinsCopy = data.slice();
-    },
-    filter: function (type, data) {
-      window.pins.remove();
-      window.pins.render(pinsCopy.filter(function (pin) {
-        if (data === 'any') {
-          return true;
-        }
-        return pin.offer[type] === data;
-      }));
-    }
   };
 
 })();

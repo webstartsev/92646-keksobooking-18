@@ -41,7 +41,7 @@
   };
 
   var succesHandler = function (data) {
-    window.pins.copyData(data);
+    window.filter.copyData(data);
     window.pins.render(data);
   };
   var errorHandler = function (errorMessage) {
