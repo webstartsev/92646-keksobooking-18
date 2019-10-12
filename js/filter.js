@@ -58,7 +58,7 @@
       });
   }
 
-  mapFilter.addEventListener('change', function () {
+  mapFilter.addEventListener('change', window.utils.debounce(function () {
     var filterPins = pins.filter(function (pin) {
       return (
         checkType(pin) &&
@@ -69,7 +69,7 @@
       );
     });
     window.pins.render(filterPins);
-  });
+  }));
 
   window.filter = {
     copyData: function (data) {
