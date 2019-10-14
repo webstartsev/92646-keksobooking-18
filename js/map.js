@@ -35,6 +35,7 @@
     },
     init: function () {
       window.map.activate();
+      window.form.activate();
       window.mainPin.setCoords();
       window.backend.load(window.config.URL_DATA, succesHandler, errorHandler);
     }

@@ -15,6 +15,11 @@
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
+  var avatar = adForm.querySelector('#avatar');
+  var previewImg = adForm.querySelector('.ad-form-header__preview img');
+
+  var images = adForm.querySelector('#images');
+
   var syncTime = function (time) {
     timeIn.value = time.value;
     timeOut.value = time.value;
@@ -153,6 +158,46 @@
   timeOut.addEventListener('change', function () {
     syncTime(timeOut);
   });
+
+  avatar.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    readFile(file, function (evtFile) {
+      previewImg.src = evtFile.target.result;
+    });
+  });
+  images.addEventListener('change', function (evt) {
+    var files = evt.target.files;
+
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      readFile(file, function (evtFile) {
+        renderPhoto(evtFile.target.result);
+      });
+    }
+  });
+
+  var renderPhoto = function (src) {
+    var photo = document.querySelector('#photo').content.querySelector('div');
+    var template = photo.cloneNode(true);
+    template.querySelector('img').src = src;
+    document.querySelector('.ad-form__photo-container').insertAdjacentElement('beforeend', template);
+  };
+
+  var readFile = function (file, callback) {
+    if (file) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = function (evt) {
+        callback(evt);
+      };
+      reader.onerror = function () {
+        showError('Произошла ошибка загрузки');
+        return false;
+      };
+    }
+  };
 
   checkCountRoomsAndPeople();
 })();
