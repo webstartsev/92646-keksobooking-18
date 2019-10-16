@@ -5,7 +5,7 @@
   var TIMEOUT = 10000; // 10s
   var RESPONSE_TYPE = 'json';
 
-  var onLoadHandler = function (xhr, onLoad, onError) {
+  var loadHandler = function (xhr, onLoad, onError) {
     xhr.addEventListener('load', function () {
       if (xhr.status === STATUS_OK) {
         onLoad(xhr.response);
@@ -14,7 +14,7 @@
       }
     });
   };
-  var onErrorHandler = function (xhr, onError) {
+  var errorHandler = function (xhr, onError) {
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
     });
@@ -29,8 +29,8 @@
       xhr.responseType = RESPONSE_TYPE;
       xhr.timeout = TIMEOUT;
 
-      onLoadHandler(xhr, onLoad, onError);
-      onErrorHandler(xhr, onError);
+      loadHandler(xhr, onLoad, onError);
+      errorHandler(xhr, onError);
 
       xhr.open('GET', url);
       xhr.send();
@@ -40,8 +40,8 @@
       xhr.responseType = RESPONSE_TYPE;
       xhr.timeout = TIMEOUT;
 
-      onLoadHandler(xhr, onLoad, onError);
-      onErrorHandler(xhr, onError);
+      loadHandler(xhr, onLoad, onError);
+      errorHandler(xhr, onError);
 
       xhr.open('POST', url);
       xhr.send(data);
