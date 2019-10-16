@@ -2,7 +2,12 @@
 
 (function () {
   var MAX_ROOMS = 100;
-  var PRICE_FOR_TYPE = {'palace': 10000, 'flat': 1000, 'house': 5000, 'bungalo': 0};
+  var PriceForType = {
+    'palace': 10000,
+    'flat': 1000,
+    'house': 5000,
+    'bungalo': 0
+  };
 
   var adForm = document.querySelector('.ad-form');
 
@@ -149,7 +154,7 @@
   });
 
   houseType.addEventListener('change', function () {
-    price.setAttribute('min', PRICE_FOR_TYPE[houseType.value]);
+    price.setAttribute('min', PriceForType[houseType.value]);
   });
 
   timeIn.addEventListener('change', function () {
