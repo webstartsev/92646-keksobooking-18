@@ -1,7 +1,12 @@
 'use strict';
 
 (function () {
-  var TYPES_DICTIONARY = {'palace': 'Дворец', 'flat': 'Квартира', 'house': 'Дом', 'bungalo': 'Бунгало'};
+  var DictionaryType = {
+    'palace': 'Дворец',
+    'flat': 'Квартира',
+    'house': 'Дом',
+    'bungalo': 'Бунгало'
+  };
 
   // Личный проект: больше деталей
   var fillTemplateCard = function (data) {
@@ -14,7 +19,7 @@
     template.querySelector('.popup__title').textContent = offer.title;
     template.querySelector('.popup__text--address').textContent = offer.address;
     template.querySelector('.popup__text--price').textContent = offer.price + '₽/ночь';
-    template.querySelector('.popup__type').textContent = TYPES_DICTIONARY[offer.type];
+    template.querySelector('.popup__type').textContent = DictionaryType[offer.type];
     template.querySelector('.popup__text--capacity').textContent = offer.rooms + ' комнаты для ' + offer.guests + ' гостей';
     template.querySelector('.popup__text--time').textContent = 'Заезд после ' + offer.checkin + ', выезд до ' + offer.checkout;
 
@@ -66,12 +71,12 @@
   var closePopupHandler = function () {
     var closePopup = document.querySelector('.popup__close');
     closePopup.addEventListener('click', function () {
-      window.popup.removePopup();
+      window.popup.remove();
     });
   };
 
   var onPopupEscPress = function (evt) {
-    window.utils.onEscPress(evt, window.popup.removePopup);
+    window.utils.onEscPress(evt, window.popup.remove);
   };
 
   window.popup = {
@@ -85,7 +90,7 @@
         });
       });
     },
-    removePopup: function () {
+    remove: function () {
       var popup = document.querySelector('.popup');
       if (popup) {
         popup.remove();

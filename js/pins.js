@@ -34,7 +34,7 @@
 
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
       for (var j = 0; j < pins.length; j++) {
-        window.popup.openPopupHandler(pins[j], data[j]);
+        window.popup.openHandler(pins[j], data[j]);
       }
     },
     remove: function () {
