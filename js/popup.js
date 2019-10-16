@@ -24,26 +24,26 @@
     template.querySelector('.popup__text--time').textContent = 'Заезд после ' + offer.checkin + ', выезд до ' + offer.checkout;
 
     var fragmentFeatures = document.createDocumentFragment();
-    for (var indexFeature = 0; indexFeature < offer.features.length; indexFeature++) {
+    offer.features.forEach(function (feature) {
       var li = document.createElement('li');
-      li.classList.add('popup__feature', 'popup__feature--' + offer.features[indexFeature]);
+      li.classList.add('popup__feature', 'popup__feature--' + feature);
       fragmentFeatures.appendChild(li);
-    }
+    });
     template.querySelector('.popup__features').innerHTML = '';
     template.querySelector('.popup__features').appendChild(fragmentFeatures);
 
     template.querySelector('.popup__description').textContent = offer.description;
 
     var fragmentPhoto = document.createDocumentFragment();
-    for (var indexPhoto = 0; indexPhoto < offer.photos.length; indexPhoto++) {
+    offer.photos.forEach(function (photo) {
       var img = document.createElement('img');
-      img.src = offer.photos[indexPhoto];
+      img.src = photo;
       img.classList.add('popup__photo');
       img.width = '45';
       img.height = '40';
       img.alt = 'Фотография жилья';
       fragmentPhoto.appendChild(img);
-    }
+    });
     template.querySelector('.popup__photos').innerHTML = '';
     template.querySelector('.popup__photos').appendChild(fragmentPhoto);
 

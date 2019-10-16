@@ -11,12 +11,12 @@
 
       var selects = mapFilters.querySelectorAll('select');
       var fieldsets = mapFilters.querySelectorAll('fieldset');
-      for (var i = 0; i < selects.length; i++) {
-        selects[i].disabled = false;
-      }
-      for (var j = 0; j < fieldsets.length; j++) {
-        fieldsets[j].disabled = false;
-      }
+      selects.forEach(function (select) {
+        select.disabled = false;
+      });
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = false;
+      });
     },
     deactivate: function () {
       window.map.isActive = false;
@@ -24,14 +24,14 @@
 
       var mapFilters = document.querySelector('.map__filters');
 
-      var selects = mapFilters.querySelectorAll('select');
-      var fieldsets = mapFilters.querySelectorAll('fieldset');
-      for (var i = 0; i < selects.length; i++) {
-        selects[i].disabled = true;
-      }
-      for (var j = 0; j < fieldsets.length; j++) {
-        fieldsets[j].disabled = true;
-      }
+      var fieldsets = mapFilters.querySelectorAll('select');
+      var selects = mapFilters.querySelectorAll('fieldset');
+      selects.forEach(function (select) {
+        select.disabled = true;
+      });
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = true;
+      });
     },
     init: function () {
       window.map.activate();

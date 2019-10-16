@@ -59,11 +59,9 @@
     }
 
     var checkboxs = fieldset.querySelectorAll('input[type=checkbox]');
-    if (checkboxs.length) {
-      for (var i = 0; i < checkboxs.length; i++) {
-        checkboxs[i].checked = false;
-      }
-    }
+    checkboxs.forEach(function (checkbox) {
+      checkbox.checked = false;
+    });
   };
 
   // Активация формы
@@ -72,24 +70,24 @@
       adForm.classList.remove('ad-form--disabled');
 
       var fieldsets = adForm.querySelectorAll('fieldset');
-      for (var i = 0; i < fieldsets.length; i++) {
-        fieldsets[i].disabled = false;
-      }
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = false;
+      });
     },
     deactivate: function () {
       adForm.classList.add('ad-form--disabled');
       var fieldsets = adForm.querySelectorAll('fieldset');
-      for (var i = 0; i < fieldsets.length; i++) {
-        fieldsets[i].disabled = true;
-        clearField(fieldsets[i]);
-      }
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = true;
+        clearField(fieldset);
+      });
     }
   };
 
   // Обработчик ошибочной отправки формы
   var errorHandler = function (errorMessage) {
     showError(errorMessage);
-    window.popup.removePopup();
+    window.popup.remove();
   };
   var showError = function (errorMessage) {
     var cardError = document.querySelector('#error').content.querySelector('div');
@@ -117,7 +115,7 @@
   var successHandler = function () {
     window.form.deactivate();
     window.pins.remove();
-    window.popup.removePopup();
+    window.popup.remove();
     window.map.deactivate();
     window.mainPin.setDeafultPosition();
     showSucces();
@@ -173,12 +171,11 @@
   images.addEventListener('change', function (evt) {
     var files = evt.target.files;
 
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
+    Array.from(files).forEach(function (file) {
       readFile(file, function (evtFile) {
         renderPhoto(evtFile.target.result);
       });
-    }
+    });
   });
 
   var renderPhoto = function (src) {

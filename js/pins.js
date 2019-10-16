@@ -27,21 +27,20 @@
       var fragment = document.createDocumentFragment();
       var countPins = data.length > COUNT_PINS ? COUNT_PINS : data.length;
       for (var i = 0; i < countPins; i++) {
-        var pin = fillPinTemplate(data[i]);
-        fragment.appendChild(pin);
+        fragment.appendChild(fillPinTemplate(data[i]));
       }
       pinsList.appendChild(fragment);
 
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-      for (var j = 0; j < pins.length; j++) {
-        window.popup.openHandler(pins[j], data[j]);
-      }
+      pins.forEach(function (pin, index) {
+        window.popup.openHandler(pin, data[index]);
+      });
     },
     remove: function () {
       var pins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-      for (var i = 0; i < pins.length; i++) {
-        pins[i].remove();
-      }
+      pins.forEach(function (pin) {
+        pin.remove();
+      });
     },
   };
 
