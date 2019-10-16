@@ -45,7 +45,7 @@
         return true;
     }
   };
-  function checkFeatures(pin) {
+  var checkFeatures = function (pin) {
     return Array.from(housingFeatures.children)
       .filter(function (feature) {
         return feature.checked === true;
@@ -56,7 +56,7 @@
       .every(function (feature) {
         return pin.offer.features.includes(feature);
       });
-  }
+  };
 
   mapFilter.addEventListener('change', window.utils.debounce(function () {
     var filterPins = pins.filter(function (pin) {
