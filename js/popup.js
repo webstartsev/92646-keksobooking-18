@@ -80,7 +80,7 @@
   };
 
   window.popup = {
-    openPopupHandler: function (pin, data) {
+    openHandler: function (pin, data) {
       pin.addEventListener('click', function () {
         openPopup(data);
       });

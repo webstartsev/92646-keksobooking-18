@@ -22,7 +22,7 @@
   window.pins = {
     render: function (data) {
       window.pins.remove();
-      window.popup.removePopup();
+      window.popup.remove();
       var pinsList = document.querySelector('.map__pins');
       var fragment = document.createDocumentFragment();
       var countPins = data.length > COUNT_PINS ? COUNT_PINS : data.length;
