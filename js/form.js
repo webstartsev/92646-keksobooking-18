@@ -49,23 +49,6 @@
     }
   };
 
-  var clearField = function (fieldset) {
-    var input = fieldset.querySelector('input');
-    if (input) {
-      input.value = '';
-    }
-
-    var textarea = fieldset.querySelector('textarea');
-    if (textarea) {
-      textarea.value = '';
-    }
-
-    var checkboxs = fieldset.querySelectorAll('input[type=checkbox]');
-    checkboxs.forEach(function (checkbox) {
-      checkbox.checked = false;
-    });
-  };
-
   // Активация формы
   window.form = {
     activate: function () {
@@ -78,11 +61,7 @@
     },
     deactivate: function () {
       adForm.classList.add('ad-form--disabled');
-      var fieldsets = adForm.querySelectorAll('fieldset');
-      fieldsets.forEach(function (fieldset) {
-        fieldset.disabled = true;
-        clearField(fieldset);
-      });
+      adForm.reset();
 
       var photos = adForm.querySelectorAll('.ad-form__photo');
       photos.forEach(function (photo) {
