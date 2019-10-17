@@ -2,10 +2,10 @@
 
 (function () {
   var MAIN_PIN_WIDTH = 65;
-  var MAIN_PIN_HEIGNT = 65;
-  var MAIN_PIN_ARROW_HEIGNT = 22;
+  var MAIN_PIN_HEIGHT = 65;
+  var MAIN_PIN_ARROW_HEIGHT = 22;
   var MAIN_PIN_CENTER_X = (MAIN_PIN_WIDTH / 2);
-  var MAIN_PIN_CENTER_Y = (MAIN_PIN_HEIGNT / 2);
+  var MAIN_PIN_CENTER_Y = (MAIN_PIN_HEIGHT / 2);
 
   var MAP_WIDTH = document.querySelector('.map').offsetWidth;
   var LOCATION_Y_MIN = 130;
@@ -18,7 +18,7 @@
   window.mainPin = {
     setCoords: function (isDisabled) {
       var pinCoordsX = Math.round(pinMain.offsetLeft + MAIN_PIN_CENTER_X);
-      var pinCoordsY = Math.round(pinMain.offsetTop + MAIN_PIN_HEIGNT + MAIN_PIN_ARROW_HEIGNT);
+      var pinCoordsY = Math.round(pinMain.offsetTop + MAIN_PIN_HEIGHT + MAIN_PIN_ARROW_HEIGHT);
 
       if (isDisabled) {
         pinCoordsX = Math.round(pinMain.offsetLeft + MAIN_PIN_CENTER_X);
@@ -35,10 +35,10 @@
         pinMain.style.left = Math.floor(MAP_WIDTH - MAIN_PIN_CENTER_X) + 'px';
       }
       // ограничение сверху/внизу
-      if (pinMain.offsetTop + MAIN_PIN_HEIGNT <= LOCATION_Y_MIN) {
-        pinMain.style.top = LOCATION_Y_MIN - MAIN_PIN_HEIGNT + 'px';
-      } else if (pinMain.offsetTop + MAIN_PIN_HEIGNT >= LOCATION_Y_MAX) {
-        pinMain.style.top = Math.floor(LOCATION_Y_MAX - MAIN_PIN_HEIGNT) + 'px';
+      if (pinMain.offsetTop + MAIN_PIN_HEIGHT <= LOCATION_Y_MIN) {
+        pinMain.style.top = LOCATION_Y_MIN - MAIN_PIN_HEIGHT + 'px';
+      } else if (pinMain.offsetTop + MAIN_PIN_HEIGHT >= LOCATION_Y_MAX) {
+        pinMain.style.top = Math.floor(LOCATION_Y_MAX - MAIN_PIN_HEIGHT) + 'px';
       }
     },
     setDeafultPosition: function () {
