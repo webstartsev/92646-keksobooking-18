@@ -74,6 +74,30 @@
   window.filter = {
     copyData: function (data) {
       pins = data.slice();
+    },
+    reset: function () {
+      mapFilter.reset();
+    },
+    activate: function () {
+      var selects = mapFilter.querySelectorAll('select');
+      var fieldsets = mapFilter.querySelectorAll('fieldset');
+      selects.forEach(function (select) {
+        select.disabled = false;
+      });
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = false;
+      });
+    },
+    deactivate: function () {
+      window.filter.reset();
+      var fieldsets = mapFilter.querySelectorAll('select');
+      var selects = mapFilter.querySelectorAll('fieldset');
+      selects.forEach(function (select) {
+        select.disabled = true;
+      });
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = true;
+      });
     }
   };
 })();

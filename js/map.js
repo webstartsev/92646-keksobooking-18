@@ -6,32 +6,12 @@
     activate: function () {
       window.map.isActive = true;
       document.querySelector('.map').classList.remove('map--faded');
-
-      var mapFilters = document.querySelector('.map__filters');
-
-      var selects = mapFilters.querySelectorAll('select');
-      var fieldsets = mapFilters.querySelectorAll('fieldset');
-      selects.forEach(function (select) {
-        select.disabled = false;
-      });
-      fieldsets.forEach(function (fieldset) {
-        fieldset.disabled = false;
-      });
+      window.filter.activate();
     },
     deactivate: function () {
       window.map.isActive = false;
       document.querySelector('.map').classList.add('map--faded');
-
-      var mapFilters = document.querySelector('.map__filters');
-
-      var fieldsets = mapFilters.querySelectorAll('select');
-      var selects = mapFilters.querySelectorAll('fieldset');
-      selects.forEach(function (select) {
-        select.disabled = true;
-      });
-      fieldsets.forEach(function (fieldset) {
-        fieldset.disabled = true;
-      });
+      window.filter.deactivate();
     },
     init: function () {
       window.map.activate();
