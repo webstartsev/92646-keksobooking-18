@@ -63,6 +63,11 @@
       adForm.classList.add('ad-form--disabled');
       adForm.reset();
 
+      var fieldsets = adForm.querySelectorAll('fieldset');
+      fieldsets.forEach(function (fieldset) {
+        fieldset.disabled = true;
+      });
+
       var photos = adForm.querySelectorAll('.ad-form__photo');
       photos.forEach(function (photo) {
         photo.remove();
