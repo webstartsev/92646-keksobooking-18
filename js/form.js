@@ -2,6 +2,7 @@
 
 (function () {
   var MAX_ROOMS = 100;
+  var DEFAULT_PREVIEW_IMG = 'img/muffin-grey.svg';
   var PriceForType = {
     'palace': 10000,
     'flat': 1000,
@@ -10,6 +11,7 @@
   };
 
   var adForm = document.querySelector('.ad-form');
+  var resetFormBtn = document.querySelector('.ad-form__reset');
 
   var roomNumber = document.querySelector('#room_number');
   var capacity = document.querySelector('#capacity');
@@ -81,6 +83,13 @@
         fieldset.disabled = true;
         clearField(fieldset);
       });
+
+      var photos = adForm.querySelectorAll('.ad-form__photo');
+      photos.forEach(function (photo) {
+        photo.remove();
+      });
+
+      previewImg.src = DEFAULT_PREVIEW_IMG;
     }
   };
 
@@ -176,6 +185,14 @@
         renderPhoto(evtFile.target.result);
       });
     });
+  });
+
+  resetFormBtn.addEventListener('click', function () {
+    window.form.deactivate();
+    window.pins.remove();
+    window.popup.remove();
+    window.map.deactivate();
+    window.mainPin.setDeafultPosition();
   });
 
   var renderPhoto = function (src) {
