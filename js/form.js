@@ -27,6 +27,8 @@
 
   var images = adForm.querySelector('#images');
 
+  var features = adForm.querySelector('.features');
+
   var syncTime = function (time) {
     timeIn.value = time.value;
     timeOut.value = time.value;
@@ -139,6 +141,7 @@
   // События валидации «Количество комнат» и «Количество мест»
   roomNumber.addEventListener('change', function () {
     checkCountRoomsAndPeople();
+    window.ai.calculatePrice();
   });
   capacity.addEventListener('change', function () {
     checkCountRoomsAndPeople();
@@ -146,6 +149,7 @@
 
   houseType.addEventListener('change', function () {
     price.setAttribute('min', PriceForType[houseType.value]);
+    window.ai.calculatePrice();
   });
 
   timeIn.addEventListener('change', function () {
@@ -167,8 +171,13 @@
     Array.from(files).forEach(function (file) {
       readFile(file, function (evtFile) {
         renderPhoto(evtFile.target.result);
+        window.ai.calculatePrice();
       });
     });
+  });
+
+  features.addEventListener('change', function () {
+    window.ai.calculatePrice();
   });
 
   resetFormBtn.addEventListener('click', function () {
