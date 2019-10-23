@@ -24,6 +24,7 @@
   var succesHandler = function (data) {
     window.filter.copyData(data);
     window.pins.render(data);
+    window.ai.clusterData(data);
   };
   var errorHandler = function (errorMessage) {
     var cardError = document.querySelector('#error').content.querySelector('div');

@@ -145,6 +145,7 @@
   });
   capacity.addEventListener('change', function () {
     checkCountRoomsAndPeople();
+    window.ai.calculatePrice();
   });
 
   houseType.addEventListener('change', function () {
@@ -154,9 +155,11 @@
 
   timeIn.addEventListener('change', function () {
     syncTime(timeIn);
+    window.ai.calculatePrice();
   });
   timeOut.addEventListener('change', function () {
     syncTime(timeOut);
+    window.ai.calculatePrice();
   });
 
   avatar.addEventListener('change', function (evt) {
